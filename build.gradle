@@ -16,8 +16,13 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation group: 'gg.jte', name: 'jte', version: '3.0.3'
+	// https://lorefnon.me/2022/04/26/using-jte-kotlin-templates-in-spring-boot/
+	implementation("gg.jte:jte-spring-boot-starter-3:3.0.3")
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.boot:spring-boot-testcontainers'
 	testImplementation 'org.testcontainers:junit-jupiter'
