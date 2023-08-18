@@ -13,11 +13,6 @@ import org.testcontainers.containers.PostgreSQLContainer;
 public class MyTestConfiguration {
 
 	@Bean
-	Something something() {
-		return new Something("sven");
-	}
-
-	@Bean
 	@ServiceConnection
 	PostgreSQLContainer<?> postgresContainer() {
 		int containerPort = 5432 ;

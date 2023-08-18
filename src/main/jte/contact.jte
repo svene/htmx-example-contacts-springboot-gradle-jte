@@ -4,6 +4,14 @@
 
 @template.layout.page(
 content = @`
-    Hello ${model.name()}! ${model.contacts().size()}
+    <h3>Hello ${model.name()}!</h3>
+
+    <div>Contacts:</div>
+    <ul>
+    @for(String entry : model.contacts())
+        <li>${entry}</li>
+    @endfor
+    </ul>
+
 `
 )
