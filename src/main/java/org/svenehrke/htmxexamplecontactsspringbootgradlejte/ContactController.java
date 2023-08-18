@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ContactController {
 
 	private final ContactService contactService;
+	private final Something something;
 
 	@GetMapping("/contacts")
 	public String contacts(@RequestParam(required = false) String q, Model model) {
@@ -21,7 +22,7 @@ public class ContactController {
 			contactService.all();
 		}
 		model.addAttribute("model", new ContactModel(
-			contactService.getName(),
+			contactService.getName() + " " + something.name(),
 			q == null ? contactService.all() : contactService.search(q)
 			)
 		);

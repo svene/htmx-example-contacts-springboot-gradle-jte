@@ -22,9 +22,14 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
 	implementation group: 'gg.jte', name: 'jte', version: '3.0.3'
 	// https://lorefnon.me/2022/04/26/using-jte-kotlin-templates-in-spring-boot/
 	implementation("gg.jte:jte-spring-boot-starter-3:3.0.3")
+
+	implementation 'org.flywaydb:flyway-core'
+	runtimeOnly 'org.postgresql:postgresql'
+	testImplementation 'org.testcontainers:postgresql'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.boot:spring-boot-testcontainers'
