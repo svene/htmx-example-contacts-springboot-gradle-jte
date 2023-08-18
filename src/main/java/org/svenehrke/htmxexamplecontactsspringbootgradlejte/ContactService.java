@@ -1,12 +1,17 @@
 package org.svenehrke.htmxexamplecontactsspringbootgradlejte;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ContactService {
+
+	private DataSource dataSource;
 
 	String getName() {
 		return "World";
