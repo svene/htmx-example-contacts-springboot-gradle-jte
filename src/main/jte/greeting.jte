@@ -2,6 +2,8 @@
 
 @param DemoModel model
 
-Hello ${model.name()}!
-<br>
-<br>
+@template.layout.page(
+content = @`
+    Hello ${model.name()}!
+`
+)
