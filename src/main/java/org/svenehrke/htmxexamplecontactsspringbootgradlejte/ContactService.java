@@ -1,15 +1,12 @@
 package org.svenehrke.htmxexamplecontactsspringbootgradlejte;
 
 import lombok.AllArgsConstructor;
+import org.jooq.DSLContext;
 import org.jooq.Field;
 import org.jooq.Record2;
 import org.jooq.Result;
-import org.jooq.SQLDialect;
-import org.jooq.impl.DSL;
 import org.springframework.stereotype.Service;
 
-import javax.sql.DataSource;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.jooq.impl.DSL.field;
@@ -19,7 +16,7 @@ import static org.jooq.impl.DSL.table;
 @AllArgsConstructor
 public class ContactService {
 
-	private DataSource dataSource;
+	private DSLContext jooq;
 
 	String getName() {
 		return "World";
@@ -30,18 +27,23 @@ public class ContactService {
 
 	record Contact(String firstName, String lastName){};
 
-	public List<String> all() {
-		var jooq = DSL.using(dataSource, SQLDialect.POSTGRES);
+	public List<Contact> all() {
+		Result<Record2<String, String>> jooqResult = jooq.select(firstName, lastName).from(table("contact")).fetch();
+		return jooqResultToList(jooqResult);
+	}
 
-		Result<Record2<String, String>> fetch = jooq.select(firstName, lastName).from(table("contact")).fetch();
+	public List<Contact> search(String q) {
+		Result<Record2<String, String>> jooqResult = jooq.select(firstName, lastName)
+			.from(table("contact"))
+			.where(firstName.like(q + "%"))
+			.fetch();
+		return jooqResultToList(jooqResult);
+	}
 
-		return fetch.stream()
+	private static List<Contact> jooqResultToList(Result<Record2<String, String>> jooqResult) {
+		return jooqResult.stream()
 			.map(it -> new Contact(it.get(firstName), it.get(lastName)))
-			.map(it -> "%s %s".formatted(it.firstName(), it.lastName()))
 			.toList();
 	}
-	public List<String> search(String q) {
 
-		return Arrays.asList("contact 1");
-	}
 }
