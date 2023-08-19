@@ -19,12 +19,10 @@ public class ContactController {
 	@GetMapping("/contacts")
 	public String contacts(@RequestParam(required = false) String q, Model model) {
 		log.info("query param q: {}", q);
+		var initialQ = q == null ? "" : q;
 		List<ContactService.Contact> models = q == null ? contactService.all() : contactService.search(q);
-		model.addAttribute("model", new ContactModel(
-			contactService.getName(),
-			modelsToViewItems(models)
-			)
-		);
+		model.addAttribute("initialQ", initialQ);
+		model.addAttribute("model", new ContactModel(modelsToViewItems(models)));
 		return "contact";
 	}
 
