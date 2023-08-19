@@ -25,7 +25,7 @@ public class ContactService {
 	private static Field<String> firstName = field("first_name", String.class);
 	private static Field<String> lastName = field("last_name", String.class);
 
-	record Contact(String firstName, String lastName){};
+	;
 
 	public List<Contact> all() {
 		Result<Record2<String, String>> jooqResult = jooq.select(firstName, lastName).from(table("contact")).fetch();

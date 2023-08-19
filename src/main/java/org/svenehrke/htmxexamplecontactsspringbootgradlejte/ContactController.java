@@ -20,16 +20,10 @@ public class ContactController {
 	public String contacts(@RequestParam(required = false) String q, Model model) {
 		log.info("query param q: {}", q);
 		var initialQ = q == null ? "" : q;
-		List<ContactService.Contact> models = q == null ? contactService.all() : contactService.search(q);
+		List<Contact> models = q == null ? contactService.all() : contactService.search(q);
 		model.addAttribute("initialQ", initialQ);
-		model.addAttribute("model", new ContactModel(modelsToViewItems(models)));
+		model.addAttribute("model", new ContactVM(models));
 		return "contact";
-	}
-
-	private static List<String> modelsToViewItems(List<ContactService.Contact> contacts) {
-		return contacts.stream()
-			.map(it -> "%s %s".formatted(it.firstName(), it.lastName()))
-			.toList();
 	}
 
 }
