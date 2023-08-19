@@ -1,4 +1,5 @@
 @import org.svenehrke.htmxexamplecontactsspringbootgradlejte.Contact
+@import java.math.BigInteger
 
 @param Contact contact
 

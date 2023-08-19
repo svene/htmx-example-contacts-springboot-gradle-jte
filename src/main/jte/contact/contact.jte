@@ -1,12 +1,20 @@
 @import org.svenehrke.htmxexamplecontactsspringbootgradlejte.Contact
 @import org.svenehrke.htmxexamplecontactsspringbootgradlejte.ContactVM
+@import java.math.BigInteger
 
 @param String initialQ
 @param ContactVM model
+@param BigInteger insertId
 
 @template.layout.page(
 content = @`
-    <form action="/contacts" method="get" class="tool-bar">
+
+    @if(insertId != null)
+        <h2>new contact with id ${insertId} added</h2>
+    @endif
+
+
+    <form action="/contact" method="get" class="tool-bar">
         <label for="search">Search Term</label>
         <input id="search" type="search" name="q" value="${ initialQ }"/>
         <input type="submit" value="Search"/>
