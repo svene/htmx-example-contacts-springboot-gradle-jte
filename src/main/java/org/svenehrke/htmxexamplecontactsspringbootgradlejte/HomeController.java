@@ -9,7 +9,7 @@ public class HomeController {
 
 	@GetMapping("/")
 	public RedirectView index() {
-		return new RedirectView("/contacts");
+		return new RedirectView("/contact");
 	}
 
 }

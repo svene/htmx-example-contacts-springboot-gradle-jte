@@ -38,7 +38,7 @@ content = @`
     </table>
 
     <p>
-        <a href="/contacts/new">Add Contact</a>
+        <a href="/contact/new">Add Contact</a>
     </p>
 
 `
