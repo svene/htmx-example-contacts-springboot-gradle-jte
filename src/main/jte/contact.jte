@@ -26,15 +26,20 @@ content = @`
             <td>${ contact.firstName() }</td>
             <td>${ contact.lastName() }</td>
             <td>${ contact.phone() }</td>
-            <td>${ contact.email() }</td> (3)
-            <%--
-                        <td><a href="/contacts/{{ contact.id }}/edit">Edit</a>
-                            <a href="/contacts/{{ contact.id }}">View</a></td>
-            --%>
+            <td>${ contact.email() }</td>
+            <td>
+                <a href="/contacts/${ contact.id() }/edit">Edit</a>
+                <a href="/contacts/${ contact.id() }">View</a>
+            </td>
         </tr>
         @endfor
         </tbody>
+
     </table>
+
+    <p>
+        <a href="/contacts/new">Add Contact</a>
+    </p>
 
 `
 )

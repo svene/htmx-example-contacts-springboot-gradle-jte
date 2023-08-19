@@ -1,4 +1,6 @@
 package org.svenehrke.htmxexamplecontactsspringbootgradlejte;
 
-public record Contact(String firstName, String lastName, String phone, String email) {
+import java.math.BigInteger;
+
+public record Contact(BigInteger id, String firstName, String lastName, String phone, String email) {
 }
