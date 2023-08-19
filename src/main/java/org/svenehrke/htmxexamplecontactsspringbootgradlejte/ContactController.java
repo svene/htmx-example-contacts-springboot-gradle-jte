@@ -23,7 +23,17 @@ public class ContactController {
 		List<Contact> models = q == null ? contactService.all() : contactService.search(q);
 		model.addAttribute("initialQ", initialQ);
 		model.addAttribute("model", new ContactVM(models));
-		return "contact";
+		return "contact/contact";
+	}
+
+	@GetMapping("/contacts/new")
+	public String contacts_new(@RequestParam(required = false) String q, Model model) {
+//		log.info("query param q: {}", q);
+//		var initialQ = q == null ? "" : q;
+//		List<Contact> models = q == null ? contactService.all() : contactService.search(q);
+//		model.addAttribute("initialQ", initialQ);
+//		model.addAttribute("model", new ContactVM(models));
+		return "contact/new_contact";
 	}
 
 }
