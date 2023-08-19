@@ -1,6 +1,7 @@
 package org.svenehrke.htmxexamplecontactsspringbootgradlejte;
 
 import lombok.AllArgsConstructor;
+import org.jooq.Field;
 import org.jooq.Record2;
 import org.jooq.Result;
 import org.jooq.SQLDialect;
@@ -24,15 +25,19 @@ public class ContactService {
 		return "World";
 	}
 
+	private static Field<String> firstName = field("first_name", String.class);
+	private static Field<String> lastName = field("last_name", String.class);
+
 	record Contact(String firstName, String lastName){};
 
 	public List<String> all() {
 		var jooq = DSL.using(dataSource, SQLDialect.POSTGRES);
-		Result<Record2<Object, Object>> fetch = jooq.select(field("first_name"), field("last_name")).from(table("contact")).fetch();
+
+		Result<Record2<String, String>> fetch = jooq.select(firstName, lastName).from(table("contact")).fetch();
 
 		return fetch.stream()
-			.map(it -> new Contact(it.get(field("first_name", String.class)), it.get(field("last_name", String.class))))
-			.map(it -> "%s %s".formatted(it.firstName, it.lastName))
+			.map(it -> new Contact(it.get(firstName), it.get(lastName)))
+			.map(it -> "%s %s".formatted(it.firstName(), it.lastName()))
 			.toList();
 	}
 	public List<String> search(String q) {
