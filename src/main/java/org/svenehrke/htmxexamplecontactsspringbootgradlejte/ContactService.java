@@ -55,6 +55,10 @@ public class ContactService {
 		return mapRecord.apply(row);
 	}
 
+	public void deleteContact(BigInteger aId) {
+		jooq.delete(table).where(id.eq(aId)).execute();
+	}
+
 	public Contact byId(BigInteger aid) {
 		Record5<BigInteger, String, String, String, String> record = getSelect().where(id.eq(aid)).fetchOne();
 		return mapRecord.apply(record);

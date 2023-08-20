@@ -33,7 +33,6 @@ public class ContactController {
 			System.out.println(id.toString());
 		}
 
-		log.info("query param q: {}", q);
 		var initialQ = q == null ? "" : q;
 		List<Contact> models = q == null ? contactService.all() : contactService.search(q);
 		model.addAttribute("initialQ", initialQ);
@@ -85,9 +84,17 @@ public class ContactController {
 		RedirectAttributes redirectAttributes,
 		@PathVariable BigInteger id
 	) {
-		System.out.println(id);
 		Contact contact = ContactBuilder.from(formDataToModel(formData)).withId(id);
-		contact = contactService.updateContact(contact);
+		contactService.updateContact(contact);
+		return new RedirectView("/contact");
+	}
+
+	@RequestMapping(
+		value = "/contact/{id}/delete",
+		method = RequestMethod.POST
+	)
+	public RedirectView deleteContact_post(@PathVariable BigInteger id) {
+		contactService.deleteContact(id);
 		return new RedirectView("/contact");
 	}
 

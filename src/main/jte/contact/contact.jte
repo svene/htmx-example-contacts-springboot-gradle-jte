@@ -36,8 +36,8 @@ content = @`
             <td>${ contact.phone() }</td>
             <td>${ contact.email() }</td>
             <td>
-                <a href="/contact/${ contact.id() }/edit">Edit</a>
                 <a href="/contact/${ contact.id() }">View</a>
+                <a href="/contact/${ contact.id() }/edit">Edit</a>
             </td>
         </tr>
         @endfor

@@ -35,6 +35,10 @@ content = @`
         </fieldset>
     </form>
 
+    <form action="/contact/${contact.id() }/delete" method="post">
+        <button>Delete Contact</button>
+    </form>
+
     <p>
         <a href="/contact">Back</a>
     </p>
