@@ -34,17 +34,29 @@ public class ContactService {
 	}
 
 	public Contact insertContact(Contact contact) {
-		Record5<BigInteger, String, String, String, String> record = jooq.insertInto(table)
+		Record5<BigInteger, String, String, String, String> row = jooq.insertInto(table)
 			.columns(firstName, lastName, phone, email)
 			.values(contact.firstName(), contact.lastName(), contact.phone(), contact.email())
 			.returningResult(id, firstName, lastName, phone, email)
 			.fetchOne()
 			;
-		return mapRecord.apply(record);
+		return mapRecord.apply(row);
+	}
+
+	public Contact updateContact(Contact contact) {
+		Record5<BigInteger, String, String, String, String> row = jooq.update(table)
+			.set(firstName, contact.firstName())
+			.set(lastName, contact.lastName())
+			.set(phone, contact.phone())
+			.set(email, contact.email())
+			.where(id.eq(contact.id()))
+			.returningResult(id, firstName, lastName, phone, email)
+			.fetchOne();
+		return mapRecord.apply(row);
 	}
 
 	public Contact byId(BigInteger aid) {
-		Record5<BigInteger, String, String, String, String> record = getSelect().where(id.equal(aid)).fetchOne();
+		Record5<BigInteger, String, String, String, String> record = getSelect().where(id.eq(aid)).fetchOne();
 		return mapRecord.apply(record);
 	}
 

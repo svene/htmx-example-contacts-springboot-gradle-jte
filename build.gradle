@@ -18,6 +18,9 @@ repositories {
 dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
+	annotationProcessor 'io.soabase.record-builder:record-builder-processor:37'
+	compileOnly 'io.soabase.record-builder:record-builder-core:37'
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 

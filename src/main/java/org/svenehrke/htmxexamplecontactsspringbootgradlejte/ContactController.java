@@ -75,6 +75,22 @@ public class ContactController {
 		return "contact/edit_contact";
 	}
 
+	@RequestMapping(
+		value = "/contact/{id}/edit",
+		method = RequestMethod.POST,
+		consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
+	)
+	public RedirectView editContact_post(
+		@RequestBody MultiValueMap<String, String> formData,
+		RedirectAttributes redirectAttributes,
+		@PathVariable BigInteger id
+	) {
+		System.out.println(id);
+		Contact contact = ContactBuilder.from(formDataToModel(formData)).withId(id);
+		contact = contactService.updateContact(contact);
+		return new RedirectView("/contact");
+	}
+
 	private static Contact formDataToModel(MultiValueMap<String, String> formData) {
 		return new Contact(
 			null,
