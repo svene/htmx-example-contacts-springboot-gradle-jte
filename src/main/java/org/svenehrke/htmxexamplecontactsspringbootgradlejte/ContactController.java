@@ -69,6 +69,12 @@ public class ContactController {
 		return "contact/show_contact";
 	}
 
+	@GetMapping("/contact/{id}/edit")
+	public String editContact(@PathVariable BigInteger id, Model model) {
+		model.addAttribute("contact", contactService.byId(id));
+		return "contact/edit_contact";
+	}
+
 	private static Contact formDataToModel(MultiValueMap<String, String> formData) {
 		return new Contact(
 			null,
