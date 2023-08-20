@@ -63,6 +63,12 @@ public class ContactController {
 		return new RedirectView("/contact");
 	}
 
+	@GetMapping("/contact/{id}")
+	public String contact(@PathVariable BigInteger id, Model model) {
+		model.addAttribute("contact", contactService.byId(id));
+		return "contact/show_contact";
+	}
+
 	private static Contact formDataToModel(MultiValueMap<String, String> formData) {
 		return new Contact(
 			null,

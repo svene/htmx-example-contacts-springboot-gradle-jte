@@ -43,6 +43,11 @@ public class ContactService {
 		return mapRecord.apply(record);
 	}
 
+	public Contact byId(BigInteger aid) {
+		Record5<BigInteger, String, String, String, String> record = getSelect().where(id.equal(aid)).fetchOne();
+		return mapRecord.apply(record);
+	}
+
 	private SelectJoinStep<Record5<BigInteger, String, String, String, String>> getSelect() {
 		return jooq.select(id, firstName, lastName, phone, email).from(table);
 	}
