@@ -45,10 +45,17 @@ content = @`
 
     </table>
 
-    <div id="main">
-        <button hx-get="/contact_list" hx-target="#main" hx-swap="outerHtml" hx-trigger="click, keyup[ctrlKey && key == 'L'] from:body">
-            Get The Contacts
+    <br>
+
+    <div class="tool-bar">
+        <label for="search">Search Term</label>
+        <input id="search" type="search" name="search" value="${ initialQ }"/>
+        <button hx-post="/contact_list" hx-target="#main" hx-include="#search">
+            Search The Contacts
         </button>
+    </div>
+
+    <div id="main">
     </div>
 
     <p>

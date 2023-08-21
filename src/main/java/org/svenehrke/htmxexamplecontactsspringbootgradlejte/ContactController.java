@@ -25,24 +25,31 @@ public class ContactController {
 
 	@GetMapping("/contact")
 	public String contact(HttpServletRequest request, @RequestParam(required = false) String q, Model model) {
-		contactListModel(request, q, model);
-		return "contact/contact";
-	}
-
-	@GetMapping("/contact_list")
-	public String contactList(HttpServletRequest request, @RequestParam(required = false) String q, Model model) {
-		contactListModel(request, q, model);
-		return "contact/contact_list";
-	}
-
-	private void contactListModel(HttpServletRequest request, String q, Model model) {
 		Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 		if (inputFlashMap != null) {
 			Object id = inputFlashMap.get("id");
-			model.addAttribute("insertId", (BigInteger)id);
-			System.out.println(id.toString());
+			model.addAttribute("insertId", id);
 		}
 
+		contactListModel(q, model);
+		return "contact/contact";
+	}
+
+	@RequestMapping(
+		value = "/contact_list",
+		method = RequestMethod.POST,
+		consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
+	)
+	public String contactList(
+		@RequestBody MultiValueMap<String, String> formData,
+		Model model
+	) {
+		String q = formData.getFirst("search");
+		contactListModel(q, model);
+		return "contact/contact_list";
+	}
+
+	private void contactListModel(String q, Model model) {
 		var initialQ = q == null ? "" : q;
 		List<Contact> models = q == null ? contactService.all() : contactService.search(q);
 		model.addAttribute("initialQ", initialQ);
