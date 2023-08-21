@@ -35,7 +35,11 @@ content = @`
         </fieldset>
     </form>
 
-    <button hx-delete="/contact/${contact.id() }" hx-target="body" hx-push-url="true">Delete Contact</button>
+<button hx-delete="/contact/${contact.id() }"
+        hx-target="body"
+        hx-push-url="true"
+        hx-confirm="Are you sure you want to delete this contact?"
+>Delete Contact</button>
 
     <p>
         <a href="/contact">Back</a>
