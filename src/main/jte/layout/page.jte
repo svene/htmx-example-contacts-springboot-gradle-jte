@@ -9,6 +9,8 @@
 <head>
     <title>Contact App</title>
     <link rel="stylesheet" href="https://the.missing.style/v0.2.0/missing.min.css">
+    <script src="https://unpkg.com/htmx.org@1.9.4"
+            crossorigin="anonymous"></script>
 <%--
     <link rel="stylesheet" href="/static/site.css">
     <script src="/static/js/htmx-1.8.0.js"></script>

@@ -45,6 +45,11 @@ content = @`
 
     </table>
 
+    <button hx-get="/contact">
+        Get The Contacts
+    </button>
+
+
     <p>
         <a href="/contact/new">Add Contact</a>
     </p>
