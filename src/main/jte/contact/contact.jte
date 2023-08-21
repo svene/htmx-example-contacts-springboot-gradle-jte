@@ -45,10 +45,11 @@ content = @`
 
     </table>
 
-    <button hx-get="/contact">
-        Get The Contacts
-    </button>
-
+    <div id="main">
+        <button hx-get="/contact" hx-target="#main">
+            Get The Contacts
+        </button>
+    </div>
 
     <p>
         <a href="/contact/new">Add Contact</a>
