@@ -46,7 +46,7 @@ content = @`
     </table>
 
     <div id="main">
-        <button hx-get="/contact_list" hx-target="#main">
+        <button hx-get="/contact_list" hx-target="#main" hx-swap="outerHtml" hx-trigger="click, keyup[ctrlKey && key == 'L'] from:body">
             Get The Contacts
         </button>
     </div>
