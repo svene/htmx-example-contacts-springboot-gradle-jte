@@ -35,9 +35,7 @@ content = @`
         </fieldset>
     </form>
 
-    <form action="/contact/${contact.id() }/delete" method="post">
-        <button>Delete Contact</button>
-    </form>
+    <button hx-delete="/contact/${contact.id() }" hx-target="body">Delete Contact</button>
 
     <p>
         <a href="/contact">Back</a>

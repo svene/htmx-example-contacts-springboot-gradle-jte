@@ -1,4 +1,3 @@
-@import org.svenehrke.htmxexamplecontactsspringbootgradlejte.Contact
 @import org.svenehrke.htmxexamplecontactsspringbootgradlejte.ContactVM
 @import java.math.BigInteger
 
