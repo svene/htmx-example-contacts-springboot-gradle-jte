@@ -25,7 +25,17 @@ public class ContactController {
 
 	@GetMapping("/contact")
 	public String contact(HttpServletRequest request, @RequestParam(required = false) String q, Model model) {
+		contactListModel(request, q, model);
+		return "contact/contact";
+	}
 
+	@GetMapping("/contact_list")
+	public String contactList(HttpServletRequest request, @RequestParam(required = false) String q, Model model) {
+		contactListModel(request, q, model);
+		return "contact/contact_list";
+	}
+
+	private void contactListModel(HttpServletRequest request, String q, Model model) {
 		Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 		if (inputFlashMap != null) {
 			Object id = inputFlashMap.get("id");
@@ -37,7 +47,6 @@ public class ContactController {
 		List<Contact> models = q == null ? contactService.all() : contactService.search(q);
 		model.addAttribute("initialQ", initialQ);
 		model.addAttribute("model", new ContactVM(models));
-		return "contact/contact";
 	}
 
 	@GetMapping("/contact/new")

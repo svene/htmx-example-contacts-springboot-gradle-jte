@@ -46,7 +46,7 @@ content = @`
     </table>
 
     <div id="main">
-        <button hx-get="/contact" hx-target="#main">
+        <button hx-get="/contact_list" hx-target="#main">
             Get The Contacts
         </button>
     </div>
