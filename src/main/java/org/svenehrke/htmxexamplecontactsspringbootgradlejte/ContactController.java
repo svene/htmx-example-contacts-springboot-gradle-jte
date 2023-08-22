@@ -26,29 +26,18 @@ public class ContactController {
 	private final ContactService contactService;
 
 	@GetMapping("/contact")
-	public String contact(HttpServletRequest request, @RequestParam(required = false) String q, Model model) {
+	public String contact(HttpServletRequest request, @RequestParam(required = false) String query_prefix, Model model) {
 		Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 		if (inputFlashMap != null) {
 			Object id = inputFlashMap.get("id");
 			model.addAttribute("insertId", id);
 		}
+		contactListModel(query_prefix, model);
+		if ("input-search".equalsIgnoreCase(request.getHeader("HX-Trigger"))) {
+			return "contact/contact_rows";
+		}
 
-		contactListModel(q, model);
 		return "contact/contact";
-	}
-
-	@RequestMapping(
-		value = "/contact_list",
-		method = RequestMethod.POST,
-		consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
-	)
-	public String contactList(
-		@RequestBody MultiValueMap<String, String> formData,
-		Model model
-	) {
-		String q = formData.getFirst("search");
-		contactListModel(q, model);
-		return "contact/contact_list";
 	}
 
 	private void contactListModel(String q, Model model) {

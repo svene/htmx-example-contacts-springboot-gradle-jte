@@ -12,17 +12,32 @@ content = @`
         <h2>new contact with id ${insertId} added</h2>
     @endif
 
-    <div class="tool-bar">
+    <form action="/contact" method="get" class="tool-bar">
         <label for="search">Search Term</label>
-        <input id="search" type="search" name="search" value="${ initialQ }"/>
-        <button hx-post="/contact_list" hx-target="#main" hx-include="#search">
-            Search The Contacts
-        </button>
-    </div>
+        <input id="input-search" type="search" name="query_prefix" value="${ initialQ }"
+               hx-get="/contact"
+               hx-target="tbody"
+               hx-trigger="my-event, keyup delay:200ms changed"
+               hx-push-url="true"
+               hx-indicator="#spinner"
+        >
+        <img style="height: 20px" id="spinner" class="htmx-indicator" src="/spinning-circles.svg"/>
+        <input type="submit" value="Search"/>
+    </form>
 
     <br>
 
-    <div id="main"></div>
+    <table>
+        <thead>
+        <tr>
+            <th>First</th> <th>Last</th> <th>Phone</th> <th>Email</th> <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @template.contact.contact_rows(model = model)
+        </tbody>
+
+    </table>
 
     <p><a href="/contact/new">Add Contact</a></p>
 
