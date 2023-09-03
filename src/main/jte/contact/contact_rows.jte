@@ -12,9 +12,11 @@
                 <td>
                         <a href="/contact/${ contact.id() }">View</a>
                         <a href="/contact/${ contact.id() }/edit">Edit</a>
-                        <a href="#" hx-delete="/contact/${ contact.id() }"
-                                hx-confirm="Are you sure you want to delete this contact?"
-                                hx-target="body"
+                        <a href="#"
+                           hx-delete="/contact/${ contact.id() }"
+                           hx-swap="outerHTML"
+                           hx-confirm="Are you sure you want to delete this contact?"
+                           hx-target="closest tr"
                         >Delete Contact
                         </a>
                 </td>

@@ -113,12 +113,21 @@ public class ContactController {
 		return new RedirectView("/contact");
 	}
 
-	@DeleteMapping("/contact/{id}")
+	@DeleteMapping(value = "/contact/{id}", headers = {"HX-Trigger!=delete-button"})
+	@ResponseBody
+	public String delete_contact_inline(@PathVariable BigInteger id) {
+		contactService.deleteContact(id);
+		return "";
+
+	}
+
+	@DeleteMapping(value = "/contact/{id}", headers = {"HX-Trigger=delete-button"})
 	public String deleteContact_delete(HttpServletRequest request, @PathVariable BigInteger id) {
 		contactService.deleteContact(id);
 		request.setAttribute(
 			View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.SEE_OTHER);
 		return "redirect:/contact";
+
 	}
 
 	private static Contact formDataToModel(MultiValueMap<String, String> formData) {
