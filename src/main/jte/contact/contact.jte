@@ -39,7 +39,12 @@ content = @`
 
     </table>
 
-    <p><a href="/contact/new">Add Contact</a> <span hx-get="/contact/count" hx-trigger="load"></span></p>
+    <p>
+        <a href="/contact/new">Add Contact</a>
+        <span hx-get="/contact/count" hx-trigger="load">
+            <img style="height: 20px" id="spinner" class="htmx-indicator" src="/spinning-circles.svg"/>
+        </span>
+    </p>
 
 `
 )

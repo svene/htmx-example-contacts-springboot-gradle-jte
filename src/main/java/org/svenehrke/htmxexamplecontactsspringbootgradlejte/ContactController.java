@@ -50,8 +50,9 @@ public class ContactController {
 
 	@GetMapping(value = "/contact/count", produces = MediaType.TEXT_HTML_VALUE)
 	@ResponseBody
-	public String get_contact_count() {
+	public String get_contact_count() throws InterruptedException {
 		int count = contactService.count();
+		Thread.sleep(3000);
 		return "(" + count + " total Contacts)";
 	}
 	@GetMapping("/contact/new")
