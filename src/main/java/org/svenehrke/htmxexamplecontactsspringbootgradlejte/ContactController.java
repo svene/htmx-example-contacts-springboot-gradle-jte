@@ -37,11 +37,9 @@ public class ContactController {
 
 		// Service calls:
 		List<Contact> rows = query_prefix == null ? contactService.all() : contactService.search(query_prefix);
-		int count = contactService.count();
 
 		// View model population:
 		model.addAttribute("initialQ", initialQ);
-		model.addAttribute("count", count);
 		model.addAttribute("model", new ContactVM(rows));
 
 		// view name:
@@ -50,6 +48,12 @@ public class ContactController {
 
 	}
 
+	@GetMapping(value = "/contact/count", produces = MediaType.TEXT_HTML_VALUE)
+	@ResponseBody
+	public String get_contact_count() {
+		int count = contactService.count();
+		return "(" + count + " total Contacts)";
+	}
 	@GetMapping("/contact/new")
 	public String contact_new(Model model) {
 		Contact contact = new Contact(BigInteger.ZERO, "", "", "", "");
