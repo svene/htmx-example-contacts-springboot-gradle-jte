@@ -41,7 +41,7 @@ content = @`
     </table>
     <p>Total: ${count}</p>
 
-    <p><a href="/contact/new">Add Contact</a></p>
+    <p><a href="/contact/new">Add Contact</a> <span>(${ count } total Contacts)</span></p>
 
 `
 )
