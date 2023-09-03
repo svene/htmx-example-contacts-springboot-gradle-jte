@@ -130,6 +130,15 @@ public class ContactController {
 
 	}
 
+	@DeleteMapping("/contact")
+	public String delete_bulk(HttpServletRequest request, @RequestParam List<String> selected_contact_ids) {
+		request.setAttribute(
+			View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.SEE_OTHER);
+		// TODO: add bulk-delete to service to improve performance:
+		selected_contact_ids.forEach(it -> contactService.deleteContact(new BigInteger(it)));
+		return "redirect:/contact";
+	}
+
 	private static Contact formDataToModel(MultiValueMap<String, String> formData) {
 		return new Contact(
 			null,

@@ -27,10 +27,11 @@ content = @`
 
     <br>
 
+    <form>
     <table>
         <thead>
         <tr>
-            <th>First</th> <th>Last</th> <th>Phone</th> <th>Email</th> <th></th>
+            <th>Select</th> <th>First</th> <th>Last</th> <th>Phone</th> <th>Email</th> <th></th>
         </tr>
         </thead>
         <tbody>
@@ -38,12 +39,19 @@ content = @`
         </tbody>
 
     </table>
+        <button hx-delete="/contact"
+                hx-confirm="Are you sure you want to delete these contacts?"
+                hx-target="body">
+            Delete Selected Contacts
+        </button>
+    </form>
 
     <p>
         <a href="/contact/new">Add Contact</a>
         <span hx-get="/contact/count" hx-trigger="revealed">
             <img style="height: 20px" id="spinner" class="htmx-indicator" src="/spinning-circles.svg"/>
         </span>
+
     </p>
 
 `

@@ -5,6 +5,7 @@
 
 @for(Contact contact : model.contacts())
         <tr>
+                <td><input type="checkbox" name="selected_contact_ids" value="${ contact.id() }"></td>
                 <td>${ contact.firstName() }</td>
                 <td>${ contact.lastName() }</td>
                 <td>${ contact.phone() }</td>
