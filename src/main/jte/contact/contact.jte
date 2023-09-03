@@ -41,7 +41,7 @@ content = @`
 
     <p>
         <a href="/contact/new">Add Contact</a>
-        <span hx-get="/contact/count" hx-trigger="load">
+        <span hx-get="/contact/count" hx-trigger="revealed">
             <img style="height: 20px" id="spinner" class="htmx-indicator" src="/spinning-circles.svg"/>
         </span>
     </p>
