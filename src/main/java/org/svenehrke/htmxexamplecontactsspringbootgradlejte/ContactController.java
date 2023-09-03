@@ -32,19 +32,22 @@ public class ContactController {
 			Object id = inputFlashMap.get("id");
 			model.addAttribute("insertId", id);
 		}
-		contactListModel(query_prefix, model);
-		if ("input-search".equalsIgnoreCase(request.getHeader("HX-Trigger"))) {
-			return "contact/contact_rows";
-		}
+		// Input handling:
+		var initialQ = query_prefix == null ? "" : query_prefix;
 
-		return "contact/contact";
-	}
+		// Service calls:
+		List<Contact> rows = query_prefix == null ? contactService.all() : contactService.search(query_prefix);
+		int count = contactService.count();
 
-	private void contactListModel(String q, Model model) {
-		var initialQ = q == null ? "" : q;
-		List<Contact> models = q == null ? contactService.all() : contactService.search(q);
+		// View model population:
 		model.addAttribute("initialQ", initialQ);
-		model.addAttribute("model", new ContactVM(models));
+		model.addAttribute("count", count);
+		model.addAttribute("model", new ContactVM(rows));
+
+		// view name:
+		boolean justRows = "input-search".equalsIgnoreCase(request.getHeader("HX-Trigger"));
+		return justRows ? "contact/contact_rows" : "contact/contact";
+
 	}
 
 	@GetMapping("/contact/new")

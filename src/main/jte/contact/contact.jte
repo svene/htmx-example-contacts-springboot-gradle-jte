@@ -4,6 +4,7 @@
 @param String initialQ
 @param ContactVM model
 @param BigInteger insertId
+@param int count
 
 @template.layout.page(
 content = @`
@@ -38,6 +39,7 @@ content = @`
         </tbody>
 
     </table>
+    <p>Total: ${count}</p>
 
     <p><a href="/contact/new">Add Contact</a></p>
 

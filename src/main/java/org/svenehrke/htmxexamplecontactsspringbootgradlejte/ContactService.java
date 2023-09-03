@@ -29,6 +29,10 @@ public class ContactService {
 		return jooqResultToList(getSelect().fetch());
 	}
 
+	public int count() {
+		return jooq.fetchCount(table);
+	}
+
 	public List<Contact> search(String q) {
 		return jooqResultToList(getSelect().where(firstName.like(q + "%")).fetch());
 	}
