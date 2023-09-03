@@ -42,7 +42,7 @@ public class ContactController {
 		model.addAttribute("initialQ", initialQ);
 		model.addAttribute("model", new ContactVM(rows));
 
-		// view name:
+		// view name: // TODO: factor into to methods using 'headers' in the @GetMapping():
 		boolean justRows = "input-search".equalsIgnoreCase(request.getHeader("HX-Trigger"));
 		return justRows ? "contact/contact_rows" : "contact/contact";
 
@@ -122,7 +122,7 @@ public class ContactController {
 	}
 
 	@DeleteMapping(value = "/contact/{id}", headers = {"HX-Trigger=delete-button"})
-	public String deleteContact_delete(HttpServletRequest request, @PathVariable BigInteger id) {
+	public String delete_contact_redirect_to_list(HttpServletRequest request, @PathVariable BigInteger id) {
 		contactService.deleteContact(id);
 		request.setAttribute(
 			View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.SEE_OTHER);
