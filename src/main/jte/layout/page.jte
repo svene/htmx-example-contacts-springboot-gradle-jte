@@ -11,12 +11,12 @@
     <link rel="stylesheet" href="https://the.missing.style/v0.2.0/missing.min.css">
     <script src="https://unpkg.com/htmx.org@1.9.4"
             crossorigin="anonymous"></script>
-<%--
-    <link rel="stylesheet" href="/static/site.css">
-    <script src="/static/js/htmx-1.8.0.js"></script>
-    <script src="/static/js/_hyperscript-0.9.7.js"></script>
-    <script src="/static/js/rsjs-menu.js" type="module"></script>
---%>
+    <link rel="stylesheet" href="/site.css">
+    <%--
+		<script src="/static/js/htmx-1.8.0.js"></script>
+		<script src="/static/js/_hyperscript-0.9.7.js"></script>
+		<script src="/static/js/rsjs-menu.js" type="module"></script>
+	--%>
     <script defer src="https://unpkg.com/alpinejs@3/dist/cdn.min.js"></script>
 </head>
 <body hx-boost="true">
