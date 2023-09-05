@@ -10,6 +10,7 @@
     <title>Contact App</title>
     <link rel="stylesheet" href="https://the.missing.style/v0.2.0/missing.min.css">
     <script src="https://unpkg.com/htmx.org@1.9.4" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/alpinejs"></script>
     <script src="/overflowmenu.js"></script>
     <link rel="stylesheet" href="/site.css">
     <%--
@@ -20,6 +21,10 @@
     <script defer src="https://unpkg.com/alpinejs@3/dist/cdn.min.js"></script>
 </head>
 <body hx-boost="true">
+<div class="counter" x-data="{ count: 0 }">
+    <output x-text="count"></output>
+    <button x-on:click="count++">Increment</button>
+</div>
 <main>
     <header>
         <h1>
