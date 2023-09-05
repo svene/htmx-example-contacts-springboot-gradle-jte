@@ -11,15 +11,22 @@
                 <td>${ contact.phone() }</td>
                 <td>${ contact.email() }</td>
                 <td>
-                        <a href="/contact/${ contact.id() }">View</a>
-                        <a href="/contact/${ contact.id() }/edit">Edit</a>
-                        <a href="#"
-                           hx-delete="/contact/${ contact.id() }"
-                           hx-swap="outerHTML swap:1s"
-                           hx-confirm="Are you sure you want to delete this contact?"
-                           hx-target="closest tr"
-                        >Delete Contact
-                        </a>
+                        <div data-overflow-menu>
+                                <button type="button" aria-haspopup="menu"
+                                        aria-controls="contact-menu-${contact.id()}"
+                                >Options</button>
+                                <div role="menu" hidden id="contact-menu-${contact.id()}">
+                                        <a role="menuitem" href="/contact/${contact.id()}/edit">Edit</a>
+                                        <a role="menuitem" href="/contact/${contact.id()}">View</a>
+                                        <a href="#"
+                                           hx-delete="/contact/${ contact.id() }"
+                                           hx-swap="outerHTML swap:1s"
+                                           hx-confirm="Are you sure you want to delete this contact?"
+                                           hx-target="closest tr"
+                                        >Delete Contact
+                                        </a>
+                                </div>
+                        </div>
                 </td>
         </tr>
 @endfor
