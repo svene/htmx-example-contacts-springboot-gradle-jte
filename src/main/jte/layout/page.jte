@@ -8,7 +8,7 @@
 <html lang="">
 <head>
     <title>Contact App</title>
-    <link rel="stylesheet" href="https://the.missing.style/v0.2.0/missing.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/missing.css@1.1.1/dist/missing.min.css">
     <script src="https://unpkg.com/htmx.org@1.9.4" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/alpinejs"></script>
     <script src="/overflowmenu.js"></script>
