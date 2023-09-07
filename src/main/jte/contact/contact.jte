@@ -33,7 +33,11 @@ content = @`
                 <slot x-text="selected.length"></slot>
                 contacts selected
 
-                <button type="button" class="bad bg color border">Delete</button>
+                <button
+                    type="button"
+                    class="bad bg color border"
+                    @click="confirm('Delete ' + selected.length + ' contacts?') && htmx.ajax('DELETE', '/contact', { source: $root, target: document.body })"
+                >Delete</button>
                 <hr aria-orientation="vertical">
                 <button type="button" @click="selected = []">Cancel</button>
             </div>
