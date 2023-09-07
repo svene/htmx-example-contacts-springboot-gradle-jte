@@ -27,18 +27,29 @@ content = @`
 
     <br>
 
-    <form>
-    <table>
-        <thead>
-        <tr>
-            <th>Select</th> <th>First</th> <th>Last</th> <th>Phone</th> <th>Email</th> <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        @template.contact.contact_rows(model = model)
-        </tbody>
+    <form x-data="{ selected: [] }">
+        <template x-if="selected.length > 0">
+            <div class="box info tool-bar">
+                <slot x-text="selected.length"></slot>
+                contacts selected
 
-    </table>
+                <button type="button" class="bad bg color border">Delete</button>
+                <hr aria-orientation="vertical">
+                <button type="button" @click="selected = []">Cancel</button>
+            </div>
+        </template>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Select</th> <th>First</th> <th>Last</th> <th>Phone</th> <th>Email</th> <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @template.contact.contact_rows(model = model)
+            </tbody>
+
+        </table>
         <button hx-delete="/contact"
                 hx-confirm="Are you sure you want to delete these contacts?"
                 hx-target="body">
